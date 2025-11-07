@@ -12,10 +12,24 @@ def test_bad():
 
 
 def test_less_chars():
-    with pytest.raises(Exception):
+    with pytest.raises(
+        Exception,
+        match="Количество значащих символов, то есть не считая пробелов и тире, в ISBN номере должно равняться 10.",
+    ):
         modulo_11_checksum("2 35")
 
 
+def test_more_chars():
+    with pytest.raises(
+        Exception,
+        match="Количество значащих символов, то есть не считая пробелов и тире, в ISBN номере должно равняться 10.",
+    ):
+        modulo_11_checksum("123456789011")
+
+
 def test_inappropriate_chars():
-    with pytest.raises(Exception):
+    with pytest.raises(
+        Exception,
+        match="ISBN может содержать только арабские цифры, а также римскую цифру X для контрольной цифры.",
+    ):
         modulo_11_checksum("dfgdfg")
