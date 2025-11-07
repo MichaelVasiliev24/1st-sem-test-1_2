@@ -1,8 +1,7 @@
-def modulo11Checksum(ISBNNumber: str):
+def modulo_11_checksum(isbn_number: str) -> bool:
+    digits = [int(char) for char in isbn_number if char.isdigit()]
 
-    digits = [int(char) for char in ISBNNumber if char.isdigit()]
-
-    checkDigit = digits[-1]
+    check_digit = digits[-1]
 
     total = 0
     for i in range(len(digits) - 1):
@@ -10,5 +9,5 @@ def modulo11Checksum(ISBNNumber: str):
         digit = digits[i]
         total += digit * weight
 
-    checksum = total + checkDigit
+    checksum = total + check_digit
     return checksum % 11 == 0
